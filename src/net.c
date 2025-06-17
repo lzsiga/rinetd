@@ -31,6 +31,10 @@ void setSocketDefaults(SOCKET fd) {
 	int tmp = 1024;
 	setsockopt(fd, SOL_SOCKET, SO_SNDBUF, &tmp, sizeof(tmp));
 #endif
+	{
+		int tmp= 1;
+		setsockopt(fd, SOL_SOCKET, SO_KEEPALIVE, &tmp, sizeof(tmp));
+	}
 }
 
 int getAddrInfoWithProto(char *address, char *port, int protocol, struct addrinfo **ai)
